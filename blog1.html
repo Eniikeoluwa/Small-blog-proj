@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Blog Website</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>My Blogs</h1>
+    <div id="blogs"></div>
+    <hr />
+    <h2>Add a Blog</h2>
+    <form id="add-blog-form">
+      <input type="text" id="title" placeholder="Enter blog title">
+      <textarea id="content" placeholder="Enter blog content"></textarea>
+      <button type="submit" class="blog-button">Add Blog</button>
+    </form>
+    <script>
+      let blogs = [];
+
+      const addBlog = (title, content) => {
+        let blog = {
+          id: blogs.length + 1,
+          title: title,
+          content: content
+        };
+        blogs.push(blog);
+        displayBlogs();
+      };
+
+      const deleteBlog = (id) => {
+        for (let i = 0; i < blogs.length; i++) {
+          if (blogs[i].id === id) {
+            blogs.splice(i, 1);
+            break;
+          }
+        }
+        displayBlogs();
+      };
+
+      const displayBlogs = () => {
+        let blogDisplay = "";
+        for (let blog of blogs) {
+          blogDisplay += `
+            <div>
+              <h3>${blog.title}</h3>
+              <p>${blog.content}</p>
+              <button onclick="deleteBlog(${blog.id})">Delete</button>
+            </div>
+          `;
+        }
+        document.getElementById("blogs").innerHTML = blogDisplay;
+      };
+
+      document
+        .getElementById("add-blog-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          let title = document.getElementById("title").value;
+          let content = document.getElementById("content").value;
+          addBlog(title, content);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sign-in">
+        <h1>Sign in</h1>
+        <form>
+            <label>Username</label>
+            <input type="text" placeholder="" id="login-username">
+            <label>Password</label>
+            <input type="password" placeholder="" id="login-password">
+            <button id="login"> Login </button>
+        </form>
+        <a id="signUp" style="display: none;" href="signup.html"></a>
+    </div>
+    <script>
+        let username = document.getElementById("login-username");
+        let password = document.getElementById("login-password");
+        let btn = document.getElementById("login");
+        let sign = document.getElementById("signUp");
+
+    btn.addEventListener("click", function() {
+        let data = {
+            username: username.value,
+            password: password.value
+        }
+        console.log(data);
+        window.location.href = "blog1.html";
+        // local storage
+        // localStorage.setItem("user", JSON.stringify(data));
+    });
+    </script>
+</body>
+</html>
